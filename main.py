@@ -37,7 +37,7 @@ async def server_proc(local_reader, local_writer):
 async def main():
     await initialize()
 
-    server  = asyncio.start_server(server_proc, '127.0.0.1', 13337)
+    server  = await asyncio.start_server(server_proc, '127.0.0.1', 13337)
 
 
     # Serve requests until Ctrl+C is pressed
