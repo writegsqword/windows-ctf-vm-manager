@@ -8,7 +8,7 @@ MONITOR_SOCK_PATH = "monitor.sock"
 FORWARD_SOCK_PATH = "forward.sock"
 class VMInstance:
     async def _vm_init(self):
-        self.vm_subproc = asyncio.create_subprocess_exec("bash", 
+        self.vm_subproc = await asyncio.create_subprocess_exec("bash", 
         "./scripts/entrypoint.sh", \
         self.workingdir, 
         self.imgdir, 
