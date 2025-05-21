@@ -29,28 +29,23 @@ async def server_proc(local_reader, local_writer):
             vm.serve(local_writer, local_reader)
             return
         #no vms :(
-        asyncio.sleep(1)    
+        await asyncio.sleep(1)    
 
 
 
 
+async def main():
+
+    server  = asyncio.start_server(server_proc, '127.0.0.1', 13337)
+
+
+    # Serve requests until Ctrl+C is pressed
+    print('Serving on {}'.format(server.sockets[0].getsockname()))
+    async with server:
+        await server.run_forever()
 
 
 
 if __name__  == "__main__":
-    # Create the server
-    loop = asyncio.get_event_loop()
-    coro = asyncio.start_server(server_proc, '127.0.0.1', 13337)
-    server = loop.run_until_complete(coro)
-
-    # Serve requests until Ctrl+C is pressed
-    print('Serving on {}'.format(server.sockets[0].getsockname()))
-    try:
-        loop.run_forever()
-    except KeyboardInterrupt:
-        pass
-
-    # Close the server
-    server.close()
-    loop.run_until_complete(server.wait_closed())
-    loop.close()
+    asyncio.run(main())
+    
