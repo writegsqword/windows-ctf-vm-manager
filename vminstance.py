@@ -23,6 +23,7 @@ class VMInstance:
     async def _vm_reset(self):
         proc = await asyncio.create_subprocess_exec("bash",
         "./scripts/load_snapshot.sh",
+        "ready",
         self.monitor_sock,
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
