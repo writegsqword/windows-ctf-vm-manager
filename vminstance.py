@@ -27,7 +27,9 @@ class VMInstance:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
         )
-        _ = await proc.communicate()
+        out, err = await proc.communicate()
+        print(out)
+        print(err)
         self.ready = True
 
 
