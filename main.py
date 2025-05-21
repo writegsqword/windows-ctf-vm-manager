@@ -43,7 +43,7 @@ async def main():
     # Serve requests until Ctrl+C is pressed
     print('Serving on {}'.format(server.sockets[0].getsockname()))
     async with server:
-        await server.run_forever()
+        await server.serve_forever()
 
 
 
