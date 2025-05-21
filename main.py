@@ -27,7 +27,9 @@ async def server_proc(local_reader, local_writer):
         for vm in G_vms:
             if not vm.is_ready():
                 continue
+            print(f"serving client on {vm.imgdir}")
             await vm.serve(local_writer, local_reader)
+            print(f"client on {vm.imgdir} exited.")
             return
         #no vms :(
         await asyncio.sleep(1)    

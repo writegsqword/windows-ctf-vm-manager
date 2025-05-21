@@ -46,6 +46,7 @@ class VMInstance:
     async def serve(self, in_writer, in_reader):
         #dont serve if not ready
         if not self.is_ready():
+            print("vm not ready yet")
             return
         #TODO: fix race condition(if it becomes a problem)
         self.ready = False
