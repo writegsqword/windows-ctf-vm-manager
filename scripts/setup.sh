@@ -12,7 +12,12 @@ trap 'bash cleanup.sh; kill $(jobs -p)' EXIT
 
 #echo 'loading vm'
 
-bash launch_win10.sh $3 &
+nsport=1337
+
+bash expose_privside.sh $forward_sock "$nsport" &
+
+
+bash launch_win10.sh $3 
 #sleep 3
 
 #echo 'loading snapshot'
@@ -20,7 +25,6 @@ bash launch_win10.sh $3 &
 
 #echo 'done. vm should be loaded completely now'
 
-nsport=1337
+
 
 #echo "forwarding $nsport to "$workingdir/forward.sock"
-bash expose_privside.sh $forward_sock "$nsport"
