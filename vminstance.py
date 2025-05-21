@@ -1,6 +1,7 @@
 import asyncio
 import select
 import subprocess
+from time import sleep
 import pipeproxy
 
 MONITOR_SOCK_PATH = "monitor.sock"
@@ -16,6 +17,7 @@ class VMInstance:
         stdout=subprocess.PIPE,
         stderr=subprocess.PIPE
         )
+        await asyncio.sleep(1)
         await self._vm_reset()
         
     async def _vm_reset(self):

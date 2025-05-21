@@ -12,6 +12,7 @@ VM_WORKDIR = os.path.abspath("./vm/working")
 
 
 async def initialize():
+    global G_vms
     #todo: figure out how to call init in consturctor
     vm0 = vminstance.VMInstance(VM_IMG, VM_WORKDIR)
     await vm0._vm_init()
@@ -26,7 +27,7 @@ async def server_proc(local_reader, local_writer):
         for vm in G_vms:
             if not vm.is_ready():
                 continue
-            vm.serve(local_writer, local_reader)
+            await vm.serve(local_writer, local_reader)
             return
         #no vms :(
         await asyncio.sleep(1)    
