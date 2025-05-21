@@ -14,7 +14,7 @@ trap 'bash cleanup.sh; kill $(jobs -p)' EXIT
 
 nsport=1337
 
-bash expose_privside.sh $forward_sock "$nsport" &
+bash priv_expose.sh $forward_sock "$nsport" &
 
 
 bash launch_win10.sh $3 
